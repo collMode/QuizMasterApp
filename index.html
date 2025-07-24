@@ -1,0 +1,162 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizFlick - Interactive Quiz Platform</title>
+
+    
+
+    <link rel="stylesheet" href="src/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Auth Screen -->
+        <div id="auth-screen" class="screen">
+            <div class="auth-container">
+                <h1>QuizMaster</h1>
+                <p>Test knowledge. Challenge friends. Have fun.</p>
+                
+                <div class="auth-options">
+                    <button id="signin-btn" class="btn primary">Sign In</button>
+                    <button id="signup-btn" class="btn secondary">Sign Up</button>
+                </div>
+            </div>
+        </div> 
+
+        <!-- Dashboard Screen (hidden initially) -->
+        <div id="dashboard-screen" class="screen hidden">
+            <header>
+                <h2>Welcome, <span id="username-display">User</span></h2>
+                <button id="signout-btn" class="btn small">Sign Out</button>
+            </header>
+            
+            <div class="dashboard-actions">
+                <button id="create-quiz-btn" class="btn large primary">Create New Quiz</button>
+                <button id="join-quiz-btn" class="btn large secondary">Join a Quiz</button>
+            </div>
+            
+            <div class="quiz-list">
+                <h3>Your Recent Quizzes</h3>
+                <div id="user-quizzes" class="quiz-cards">
+                    <!-- Dynamically populated -->
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div id="Info-quiz-screen" class="screen hidden">
+            <div class="creation-header">
+                <h2>Create Your Quiz</h2>
+                <button id="back-to-dashboard-btn" class="btn small">Back</button>
+            </div>
+            <h1>Create your new Quiz!</h1>
+            <label for="quiz-title">Quiz Title</label>
+            <input type="text" id="quiz-title" placeholder="Enter quiz title">
+            <label for="Description">Quiz description</label>
+            <input type="checkbox" name="stuff">
+            <button id = "save-btn">save</button>
+
+        </div>
+
+<div id="questions-screen" class="screen hidden">
+
+ <input type="text"   >
+<!--do the question  1, add question, question type, 2x 3x options, the question boxes, and image box-->
+    
+</div>
+
+   
+        </div>
+
+        <!-- Quiz Lobby Screen (hidden initially) -->
+   <!--     <div id="lobby-screen" class="screen hidden">
+            <div class="lobby-container">
+                <h2>Quiz Lobby</h2>
+                <div class="quiz-info">
+                    <h3 id="lobby-quiz-title">Quiz Title</h3>
+                    <p>Join Code: <span id="join-code">ABCD</span></p>
+                    <p>Players: <span id="player-count">0</span></p>
+                </div>
+                
+                <div id="players-list">
+                  
+                </div>
+                
+                <button id="start-quiz-btn" class="btn large primary">Start Quiz</button>
+            </div>
+        </div> 
+
+     
+        <div id="play-screen" class="screen hidden">
+            <div class="quiz-header">
+                <div class="quiz-meta">
+                    <h2 id="current-quiz-title">Quiz Title</h2>
+                    <p>Question <span id="question-number">1</span> of <span id="total-questions">5</span></p>
+                </div>
+                <div class="timer">
+                    <span id="time-remaining">10</span>s
+                </div>
+            </div>
+            
+            <div class="question-container">
+                <h3 id="question-text">Question text goes here?</h3>
+                <div id="options-container" class="options-grid">
+                   
+                </div>
+            </div> 
+            
+            <div class="progress-container">
+                <div class="progress-bar">
+                    <div class="progress-fill"></div>
+                </div>
+            </div>
+        </div> -->
+
+        <!-- Results Screen (hidden initially) -->
+       <!-- <div id="results-screen" class="screen hidden">
+            <div class="results-container">
+                <h2>Quiz Results</h2>
+                <div class="score-display">
+                    <p>Your Score:</p>
+                    <h3 id="final-score">0</h3>
+                    <p id="score-message">Nice try!</p>
+                </div>
+                
+                <div class="leaderboard">
+                    <h3>Leaderboard</h3>
+                    <ol id="leaderboard-list">
+                    </ol>
+                </div>
+                
+                <button id="return-to-dashboard-btn" class="btn primary">Back to Dashboard</button>
+            </div>
+        </div> 
+    </div> -->
+
+        <script type="module" src="src/main.js"></script>
+    
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
