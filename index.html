@@ -52,95 +52,54 @@
 
 
 
+<!----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+Screen to create the basic quiz info like title, description, privacy level. in future will add image psosibility too
+------------------------------------------------------------------------------------------>
         <div id="Info-quiz-screen" class="screen hidden">
             <div class="creation-header">
                 <h2>Create Your Quiz</h2>
                 <button id="back-to-dashboard-btn" class="btn small">Back</button>
             </div>
+            <div id="infoTime">
+                <div id="CreateIt">
             <h1>Create your new Quiz!</h1>
+            </div>
+            <div style="margin: 50px;  justify-items: center;align-items: center;display: flex; ">
             <label for="quiz-title">Quiz Title</label>
             <input type="text" id="quiz-title" placeholder="Enter quiz title">
-            <label for="Description">Quiz description</label>
-            <input type="checkbox" name="stuff">
+            </div >
+            <div style="margin: 50px;  justify-items: center;align-items: center;display: flex; ">
+            <label style="font-size: large;font-weight: bold;align-items: center;justify-content: center;bottom:55px" for="QuizDescription">Description</label>
+            <textarea style="width: 100px;" id = "description" row="20" col="100" name="stuff"></textarea>
+            </div>
+            <div style="margin: 50px;  justify-items: center;align-items: center;display: flex; ">
+            <label for="Private?">Private</label>
+            <input id = "privacy" type="checkbox" name="stuff">
+            </div>
+            <div style="margin: 50px;  justify-items: center;align-items: center;display: flex; ">
             <button id = "save-btn">save</button>
+            </div>
+        </div>
 
         </div>
+<!---------------------------------------------------------
+-------------------------------------->
+
+
+
+
 
 <div id="questions-screen" class="screen hidden">
 
  <input type="text"   >
-<!--do the question  1, add question, question type, 2x 3x options, the question boxes, and image box-->
     
 </div>
 
    
         </div>
 
-        <!-- Quiz Lobby Screen (hidden initially) -->
-   <!--     <div id="lobby-screen" class="screen hidden">
-            <div class="lobby-container">
-                <h2>Quiz Lobby</h2>
-                <div class="quiz-info">
-                    <h3 id="lobby-quiz-title">Quiz Title</h3>
-                    <p>Join Code: <span id="join-code">ABCD</span></p>
-                    <p>Players: <span id="player-count">0</span></p>
-                </div>
-                
-                <div id="players-list">
-                  
-                </div>
-                
-                <button id="start-quiz-btn" class="btn large primary">Start Quiz</button>
-            </div>
-        </div> 
-
-     
-        <div id="play-screen" class="screen hidden">
-            <div class="quiz-header">
-                <div class="quiz-meta">
-                    <h2 id="current-quiz-title">Quiz Title</h2>
-                    <p>Question <span id="question-number">1</span> of <span id="total-questions">5</span></p>
-                </div>
-                <div class="timer">
-                    <span id="time-remaining">10</span>s
-                </div>
-            </div>
-            
-            <div class="question-container">
-                <h3 id="question-text">Question text goes here?</h3>
-                <div id="options-container" class="options-grid">
-                   
-                </div>
-            </div> 
-            
-            <div class="progress-container">
-                <div class="progress-bar">
-                    <div class="progress-fill"></div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- Results Screen (hidden initially) -->
-       <!-- <div id="results-screen" class="screen hidden">
-            <div class="results-container">
-                <h2>Quiz Results</h2>
-                <div class="score-display">
-                    <p>Your Score:</p>
-                    <h3 id="final-score">0</h3>
-                    <p id="score-message">Nice try!</p>
-                </div>
-                
-                <div class="leaderboard">
-                    <h3>Leaderboard</h3>
-                    <ol id="leaderboard-list">
-                    </ol>
-                </div>
-                
-                <button id="return-to-dashboard-btn" class="btn primary">Back to Dashboard</button>
-            </div>
-        </div> 
-    </div> -->
+   
 
         <script type="module" src="src/main.js"></script>
     

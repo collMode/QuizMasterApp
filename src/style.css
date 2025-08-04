@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #6c5ce7;
-    --secondary-color: #a29bfe;
-    --accent-color: #fd79a8;
+    --primary-color: #5c65e7;
+    --secondary-color: #fe9b9b;
+    --accent-color: #fd7998;
     --dark-color: #2d3436;
     --light-color: #f5f6fa;
     --success-color: #00b894;
@@ -133,6 +133,19 @@ body {
     align-items: center;
     margin-bottom: 2rem;
 }
+
+#infoTime{
+
+  background-color: var(--primary-color);
+  display: flex;
+  flex-direction: column;      /* Stack children vertically */
+  justify-content: center;     /* Center vertically */
+  align-items: center;         /* Center horizontally */
+  height: 100vh;               /* Full viewport height */
+  min-height: 100vh;
+
+}
+
 
 .quiz-form {
     background: white;
