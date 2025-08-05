@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="src/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="margin: 0;padding: 0;">
     <div class="app-container">
         <!-- Auth Screen -->
         <div id="auth-screen" class="screen">
@@ -90,9 +90,20 @@ Screen to create the basic quiz info like title, description, privacy level. in 
 
 
 
-<div id="questions-screen" class="screen hidden">
+<div style="background-color: aqua;accent-color: red;color-scheme: green;" id="questions-screen" class="screen hidden">
+<div style="display: flex; justify-content: space-between ; background-color: lightsteelblue;">
+<div>
+ <button id="back2" style="position:relative; top: 5px;" class="btn small primary">back</button>
+    </div>
+<div>
+ <h1 style="text-align: center; margin: 0; padding: 0;position: relative; left: 100px;" id="quiz-title-placeholder">Question Bank</h1>
+ </div>
+ <div>
+ <button style="position:relative; top: 5px;" class="btn small primary">Save Changes</button>
+ <button style="position:relative; top: 5px;" class="btn small primary">add Question</button>
+ </div>
 
- <input type="text"   >
+ </div>
     
 </div>
 

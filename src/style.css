@@ -1,7 +1,8 @@
+
 :root {
     --primary-color: #5c65e7;
     --secondary-color: #fe9b9b;
-    --accent-color: #fd7998;
+    --accent-color: #79fda7;
     --dark-color: #2d3436;
     --light-color: #f5f6fa;
     --success-color: #00b894;
@@ -22,6 +23,8 @@ body {
     background-color: var(--light-color);
     color: var(--dark-color);
     line-height: 1.6;
+    margin: 0;
+    padding:0;
 }
 
 .hidden {
@@ -74,6 +77,9 @@ body {
     align-items: center;
     background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
     color: white;
+}
+.container > h1 {
+  margin-top: 0;
 }
 
 .auth-container {
@@ -136,13 +142,15 @@ body {
 
 #infoTime{
 
-  background-color: var(--primary-color);
+  background-color: aqua;
+  accent-color: red;
   display: flex;
   flex-direction: column;      /* Stack children vertically */
   justify-content: center;     /* Center vertically */
   align-items: center;         /* Center horizontally */
   height: 100vh;               /* Full viewport height */
   min-height: 100vh;
+  
 
 }
 
