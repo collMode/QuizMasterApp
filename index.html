@@ -81,14 +81,18 @@ Screen to create the basic quiz info like title, description, privacy level. in 
             <button id = "save-btn">save</button>
             </div>
         </div>
-
+<label id="secret" class="hidden">text</label>
         </div>
 <!---------------------------------------------------------
 -------------------------------------->
 
 
 
+<!------------------------------------------------------------------------------------------
 
+question bank screen for new quiz
+
+--------------------------------------------------------------------------------------------->
 
 <div style="background-color: aqua;accent-color: red;color-scheme: green;" id="questions-screen" class="screen hidden">
 <div style="display: flex; justify-content: space-between ; background-color: lightsteelblue;">
@@ -99,14 +103,52 @@ Screen to create the basic quiz info like title, description, privacy level. in 
  <h1 style="text-align: center; margin: 0; padding: 0;position: relative; left: 100px;" id="quiz-title-placeholder">Question Bank</h1>
  </div>
  <div>
- <button style="position:relative; top: 5px;" class="btn small primary">Save Changes</button>
- <button style="position:relative; top: 5px;" class="btn small primary">add Question</button>
+ <button id="save2" style="position:relative; top: 5px;" class="btn small primary">Save Changes</button>
+ <button id="addTime" style="position:relative; top: 5px;" class="btn small primary">add Question</button>
  </div>
 
  </div>
     
 </div>
+<!------------------------------------------------------------------------------------------
 
+
+
+--------------------------------------------------------------------------------------------->
+
+
+
+<!------------------------------------------------------------------------------------------
+
+
+add question page
+--------------------------------------------------------------------------------------------->
+<div id="addQuestion" class="screen hidden">
+
+    <div>
+         <label>Question:</label>
+        <textarea id="QuestionTime" rows:20 cols:20></textarea>
+    </div>
+    <div>
+       
+        <label>Option 1:</label>
+        <input id="op1" type="text"><br>
+        <label>Option 2:</label>
+        <input id="op2" type="text"><br>
+        <label>Option 3:</label>
+        <input id="op3" type="text"><br>
+        <label>Option 4:</label>
+        <input id="op4" type="text">
+    </div>
+
+
+</div>
+
+<!------------------------------------------------------------------------------------------
+
+
+
+--------------------------------------------------------------------------------------------->
    
         </div>
 

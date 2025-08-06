@@ -25,6 +25,8 @@ function setupEventListeners() {
     // Auth screen buttons
     document.getElementById('signin-btn').addEventListener('click', showDashboardScreen);
     document.getElementById('signup-btn').addEventListener('click', showDashboardScreen );
+    document.getElementById('back2').addEventListener('click', back2 );
+
     
     // Dashboard buttons
     document.getElementById('create-quiz-btn').addEventListener('click', showCreateQuizScreen);
@@ -33,6 +35,8 @@ function setupEventListeners() {
     
     // Quiz creation buttons
         document.getElementById('save-btn').addEventListener('click', save);
+        document.getElementById('addTime').addEventListener('click', addTime);
+
 
     //document.getElementById('add-question-btn').addEventListener('click', addQuestionForm);
   //  document.getElementById('publish-quiz-btn').addEventListener('click', publishQuiz);
@@ -45,9 +49,33 @@ function setupEventListeners() {
     //document.getElementById('return-to-dashboard-btn').addEventListener('click', showDashboardScreen);
 }
 
+//ok so like make it so that text is different based on quiz name for title before "QUestion BANK", also make add questio  button maybe?
+
 // Auth State Management
+
+async function addTime(){
+
+//put this database stuff in a different function hehe
+    const quest = document.getElementById("QuestionTime").value;
+    const quizId = document.getElementById("secret").textContent;
+    const {data, error} = await supabase.from('Questions').insert([{Question: quest,QuizID:quizId}]);
+     if (error) {
+        console.error('Insert failed:', error);
+        console.log("to");
+
+     }
+
+
+    hideAllScreens();
+    document.getElementById('addQuestion').classList.remove('hidden');
+
+
+
+
+}
 async function  save(){
     const title = document.getElementById('quiz-title').value;
+
     const descriprion = document.getElementById('description').value;
     const privacy = document.getElementById('privacy');
     const {data, error} = await supabase.from('Quizzes').insert([{Quiz_Name: title,Private:privacy.checked,Quiz_Description:descriprion}]);
@@ -55,10 +83,34 @@ async function  save(){
         console.error('Insert failed:', error);
         console.log("to");
 
-     }
-   //   console.log("to");
+     }else{
+
+        const {data, error} = await supabase.from('Quizzes').select('id').eq('Quiz_Name',title).single();
+
+
+
     hideAllScreens();
     document.getElementById('questions-screen').classList.remove('hidden');
+    document.getElementById("quiz-title-placeholder").textContent= title+ " Question Bank"
+            if (error) {
+        console.error('Insert failed:', error);
+        console.log("to");
+
+         }else{
+          document.getElementById("secret").textContent= data.id;
+          console.log("yo. also " + data.id);
+         }
+
+
+     }
+   //   console.log("to");
+    
+ 
+
+}
+function back2(){
+     hideAllScreens();
+    document.getElementById('Info-quiz-screen').classList.remove('hidden');
 
 }
 function checkAuthState() {
@@ -83,6 +135,7 @@ function showDashboardScreen() {
 }
 
 function showCreateQuizScreen() {
+
  
     hideAllScreens();
     document.getElementById('Info-quiz-screen').classList.remove('hidden');
