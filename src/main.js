@@ -35,7 +35,9 @@ function setupEventListeners() {
     
     // Quiz creation buttons
         document.getElementById('save-btn').addEventListener('click', save);
-        document.getElementById('addTime').addEventListener('click', addTime);
+        document.getElementById('addTime').addEventListener('click', addQuestion);
+        document.getElementById('saveQuestion').addEventListener('click', saveQuestion);
+
 
 
     //document.getElementById('add-question-btn').addEventListener('click', addQuestionForm);
@@ -49,30 +51,70 @@ function setupEventListeners() {
     //document.getElementById('return-to-dashboard-btn').addEventListener('click', showDashboardScreen);
 }
 
-//ok so like make it so that text is different based on quiz name for title before "QUestion BANK", also make add questio  button maybe?
 
-// Auth State Management
-
-async function addTime(){
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
+function addQuestion(){
 
 //put this database stuff in a different function hehe
-    const quest = document.getElementById("QuestionTime").value;
-    const quizId = document.getElementById("secret").textContent;
-    const {data, error} = await supabase.from('Questions').insert([{Question: quest,QuizID:quizId}]);
-     if (error) {
-        console.error('Insert failed:', error);
-        console.log("to");
-
-     }
 
 
     hideAllScreens();
     document.getElementById('addQuestion').classList.remove('hidden');
 
+}
 
+/************************************************************************************************************************************
+ * shows question bank screen for current quiz. looks through questions table and fetches and displays all question names of questiosn
+ * in the quiz
+ * 
+ * HEHEHEHEHEH
+ ****************************************************************************************************************************************/
+function showQuestionBank(){
 
+    hideAllScreens();
+    document.getElementById('questions-screen').classList.remove('hidden');
 
 }
+
+
+
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
+async function saveQuestion(){
+
+    const quest = document.getElementById("QuestionTime").value;
+    const quizId = document.getElementById("secret").textContent;
+    const {data, error} = await supabase.from('Questions').insert([{Question: quest,QuizID:quizId}]);
+     if (error) {
+        console.error('Insert failed:', error);
+        console.log("go bro");
+
+     }
+     console.log("huh man");
+        showQuestionBank();
+
+}
+
+
+
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
 async function  save(){
     const title = document.getElementById('quiz-title').value;
 
@@ -89,8 +131,8 @@ async function  save(){
 
 
 
-    hideAllScreens();
-    document.getElementById('questions-screen').classList.remove('hidden');
+
+    showQuestionBank();
     document.getElementById("quiz-title-placeholder").textContent= title+ " Question Bank"
             if (error) {
         console.error('Insert failed:', error);
@@ -108,11 +150,28 @@ async function  save(){
  
 
 }
+
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
 function back2(){
      hideAllScreens();
     document.getElementById('Info-quiz-screen').classList.remove('hidden');
 
 }
+
+
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
 function checkAuthState() {
     auth.onAuthStateChanged(user => {
         if (user) {
@@ -129,11 +188,26 @@ function checkAuthState() {
 
 
 
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
 function showDashboardScreen() {
     hideAllScreens();
     document.getElementById('dashboard-screen').classList.remove('hidden');
 }
 
+
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
 function showCreateQuizScreen() {
 
  
@@ -143,11 +217,19 @@ function showCreateQuizScreen() {
 }
 
 
-
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
 function hideAllScreens() {
     const screens = document.querySelectorAll('.screen');
     screens.forEach(screen => screen.classList.add('hidden'));
 }
+
+
 
 
 
