@@ -110,7 +110,7 @@ async function showQuestionBank(id){
 
 
 /************************************************************************************************************************************
- * todo list: add selector for correct answer, add edit/view questions, add save questions etc etc.
+ * todo list: add selector for correct answer, add edit/view questions, add save questions etc etc.]
  * 
  * 
  * 
@@ -136,7 +136,8 @@ async function saveNewQuestion(){
         const option = document.getElementById(word).value;
         console.log(option);
         if((option.trim()!="")){
-                const {data2, error} = await supabase.from('Options').insert([{option_text:option,Correctness: true,Question_id:theID}]);
+                const Correct = document.getElementById("cor" + i);
+                const {data2, error} = await supabase.from('Options').insert([{option_text:option,Correctness: Correct.checked,Question_id:theID}]);
                 if(error){
                     console.error("error time",error);
                 }
