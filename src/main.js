@@ -27,6 +27,7 @@ function setupEventListeners() {
     document.getElementById('signup-btn').addEventListener('click', showDashboardScreen );
     document.getElementById('back2').addEventListener('click', backToCreateQuiz );
 
+
     
     // Dashboard buttons
     document.getElementById('create-quiz-btn').addEventListener('click', showCreateQuizScreen);
@@ -164,6 +165,10 @@ async function saveNewQuestion(){
  * 
  ****************************************************************************************************************************************/
 async function  saveNewQuizInfo(){
+//ok so like make it so that text is different based on quiz name for title before "QUestion BANK", also make add questio  button maybe?
+
+// Auth State Management
+async function  save(){
     const title = document.getElementById('quiz-title').value;
 
     const descriprion = document.getElementById('description').value;
@@ -173,7 +178,7 @@ async function  saveNewQuizInfo(){
         console.error('Insert failed:', error);
         console.log("to");
 
-     }else{
+     } else{
 
         const {data, error} = await supabase.from('Quizzes').select('id').eq('Quiz_Name',title).single();
 
@@ -191,13 +196,19 @@ async function  saveNewQuizInfo(){
           console.log("yo. also " + data.id);
          }
 
+    hideAllScreens();
+    document.getElementById('questions-screen').classList.remove('hidden');
+    document.getElementById("quiz-title-placeholder").textContent= title+ " Question Bank"
 
      }
-   //   console.log("to");
+
     
  
 
 }
+function back2(){
+     hideAllScreens();
+    document.getElementById('Info-quiz-screen').classList.remove('hidden');
 
 /************************************************************************************************************************************
  * 
