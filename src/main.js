@@ -27,7 +27,6 @@ function setupEventListeners() {
     document.getElementById('signup-btn').addEventListener('click', showDashboardScreen );
     document.getElementById('back2').addEventListener('click', backToCreateQuiz );
 
-
     
     // Dashboard buttons
     document.getElementById('create-quiz-btn').addEventListener('click', showCreateQuizScreen);
@@ -36,7 +35,7 @@ function setupEventListeners() {
     
     // Quiz creation buttons
         document.getElementById('save-btn').addEventListener('click', saveNewQuizInfo);
-        document.getElementById('addTime').addEventListener('click', addQuestion);
+        document.getElementById('addTime').addEventListener('click', ShowAddQuestionScreen);
         document.getElementById('saveQuestion').addEventListener('click', saveNewQuestion);
 
 
@@ -60,7 +59,25 @@ function setupEventListeners() {
  * 
  * 
  ****************************************************************************************************************************************/
-function addQuestion(){
+function ShowAddQuestionScreen(){
+
+        const element = document.getElementById('Delete');
+        if(element!=null){
+            element.remove();
+        }
+        for(let i = 1;i<5;i++){
+            const input = document.getElementById('op' + i);
+            input.value = "";
+            const check = document.getElementById('cor' + i);
+            check.checked = false;
+        }
+        const input = document.getElementById("QuestionTime");
+        input.value = "";
+        
+
+        
+        
+    
 
 //put this database stuff in a different function hehe
 
@@ -89,17 +106,19 @@ async function showQuestionBank(id){
     if(error){
         console.error("bro it an error");
     }else{
+        let i = 0;
 
         data.forEach(question => {
-            
+            i++;
             const btnNew = document.createElement('button');
+            btnNew.id = 'question' + i;
             btnNew.textContent = question.Question;
             const divTime = document.getElementById("questionsList");
             btnNew.classList.add("btn");
             btnNew.classList.add("secondary");
             btnNew.classList.add("large");
             divTime.appendChild(btnNew);
-
+            document.getElementById("question" + i).addEventListener("click", () => editQuestion(question.id,question.Question));
         });
 
     }
@@ -111,7 +130,67 @@ async function showQuestionBank(id){
 
 
 /************************************************************************************************************************************
- * todo list: add selector for correct answer, add edit/view questions, add save questions etc etc.]
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
+async function editQuestion(questionId,questionName){
+    ShowAddQuestionScreen();
+    const theDiv = document.getElementById("questionControl");
+    const btnNew = document.createElement("button");
+    btnNew.textContent ="Delete Question";
+    btnNew.id = "Delete";
+    btnNew.classList.add("btn");
+    btnNew.classList.add("secondary");
+    btnNew.classList.add("small");
+    theDiv.appendChild(btnNew);
+
+    console.log("HEYYYYYY IT HERE." + questionId + ".");
+    const {data: data2, error: error2} = await supabase.from('Options').select('*').eq('Question_id',questionId);
+
+    if(error2){
+        console.error("ALERT",error2);
+    }
+    if(data2==null){
+        console.log("YOOOOOOO");
+    }
+    let count = 0;
+    const quest = document.getElementById('QuestionTime');
+    quest.value = questionName;
+    data2.forEach(option => {
+        count++
+        console.log("ok so like count is that and other is that " + count + option.option_number);
+       while(count!=option.option_number){
+        count++;
+       } 
+        
+        const input = document.getElementById('op' + count);
+        input.value = option.option_text;
+        if(option.Correctness){
+            const check = document.getElementById('cor' + count);
+            check.checked = true;
+        }
+        
+    });
+
+
+
+}
+
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
+
+
+
+/************************************************************************************************************************************
+ * todo list: add selector for correct answer, add edit/view questions, add save quizzes etc etc.]
  * 
  * 
  * 
@@ -138,7 +217,7 @@ async function saveNewQuestion(){
         console.log(option);
         if((option.trim()!="")){
                 const Correct = document.getElementById("cor" + i);
-                const {data2, error} = await supabase.from('Options').insert([{option_text:option,Correctness: Correct.checked,Question_id:theID}]);
+                const {data2, error} = await supabase.from('Options').insert([{option_number: i,option_text:option,Correctness: Correct.checked,Question_id:theID}]);
                 if(error){
                     console.error("error time",error);
                 }
@@ -165,10 +244,6 @@ async function saveNewQuestion(){
  * 
  ****************************************************************************************************************************************/
 async function  saveNewQuizInfo(){
-//ok so like make it so that text is different based on quiz name for title before "QUestion BANK", also make add questio  button maybe?
-
-// Auth State Management
-async function  save(){
     const title = document.getElementById('quiz-title').value;
 
     const descriprion = document.getElementById('description').value;
@@ -178,7 +253,7 @@ async function  save(){
         console.error('Insert failed:', error);
         console.log("to");
 
-     } else{
+     }else{
 
         const {data, error} = await supabase.from('Quizzes').select('id').eq('Quiz_Name',title).single();
 
@@ -196,19 +271,13 @@ async function  save(){
           console.log("yo. also " + data.id);
          }
 
-    hideAllScreens();
-    document.getElementById('questions-screen').classList.remove('hidden');
-    document.getElementById("quiz-title-placeholder").textContent= title+ " Question Bank"
 
      }
-
+   //   console.log("to");
     
  
 
 }
-function back2(){
-     hideAllScreens();
-    document.getElementById('Info-quiz-screen').classList.remove('hidden');
 
 /************************************************************************************************************************************
  * 
