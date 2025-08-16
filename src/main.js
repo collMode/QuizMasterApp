@@ -1,6 +1,6 @@
 import { createClient } from '@supabase/supabase-js';
 
-
+//TODO: FOR AFTER I IMPLEMENT SAVED QUIZZES. I PRESS ON THEM, BUT FIRST A FUNCTION RUNS WHIHC LOADS ALL CURRENT QUESTIONS   
 //make the arguments environment variables to protect them. 
  const supabase = createClient('https://oagnewailunfaiotqxqe.supabase.co','eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im9hZ25ld2FpbHVuZmFpb3RxeHFlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI4MDM2MTIsImV4cCI6MjA2ODM3OTYxMn0.HRDc6lqzWEe0b3h3gyLmpSjALVM66loR_IUKv1mXWA4');
 
@@ -37,6 +37,8 @@ function setupEventListeners() {
         document.getElementById('save-btn').addEventListener('click', saveNewQuizInfo);
         document.getElementById('addTime').addEventListener('click', ShowAddQuestionScreen);
         document.getElementById('saveQuestion').addEventListener('click', saveNewQuestion);
+        document.getElementById('deleteQuestion').addEventListener('click', deleteQuestion);
+        document.getElementById('updateQuestion').addEventListener('click', updateQuestion);
 
 
 
@@ -61,10 +63,11 @@ function setupEventListeners() {
  ****************************************************************************************************************************************/
 function ShowAddQuestionScreen(){
 
-        const element = document.getElementById('Delete');
-        if(element!=null){
-            element.remove();
-        }
+        document.getElementById("deleteQuestion").classList.add("hidden");
+        document.getElementById("saveQuestion").classList.remove("hidden");
+       document.getElementById("updateQuestion").classList.add("hidden");
+
+
         for(let i = 1;i<5;i++){
             const input = document.getElementById('op' + i);
             input.value = "";
@@ -96,34 +99,9 @@ function ShowAddQuestionScreen(){
 async function showQuestionBank(id){
 
 
-    //when you delete a question, it's button gets deleted from questionBank, with ID being the question name maybe. 
-    const myDiv = document.getElementById("questionsList");
-    const buttons = myDiv.querySelectorAll('button');
-    buttons.forEach(btn => btn.remove());
-    hideAllScreens();
+ hideAllScreens();
     document.getElementById('questions-screen').classList.remove('hidden');
-    const {data, error} = await supabase.from('Questions').select('*').eq('QuizID',id);
-    if(error){
-        console.error("bro it an error");
-    }else{
-        let i = 0;
 
-        data.forEach(question => {
-            i++;
-            const btnNew = document.createElement('button');
-            btnNew.id = 'question' + i;
-            btnNew.textContent = question.Question;
-            const divTime = document.getElementById("questionsList");
-            btnNew.classList.add("btn");
-            btnNew.classList.add("secondary");
-            btnNew.classList.add("large");
-            divTime.appendChild(btnNew);
-            document.getElementById("question" + i).addEventListener("click", () => editQuestion(question.id,question.Question));
-        });
-
-    }
-
-    
     
 }
 
@@ -133,20 +111,19 @@ async function showQuestionBank(id){
  * 
  * 
  * 
+ *
  * 
  * 
  ****************************************************************************************************************************************/
 async function editQuestion(questionId,questionName){
     ShowAddQuestionScreen();
-    const theDiv = document.getElementById("questionControl");
-    const btnNew = document.createElement("button");
-    btnNew.textContent ="Delete Question";
-    btnNew.id = "Delete";
-    btnNew.classList.add("btn");
-    btnNew.classList.add("secondary");
-    btnNew.classList.add("small");
-    theDiv.appendChild(btnNew);
+    document.getElementById("updateQuestion").classList.remove("hidden");
+    document.getElementById("deleteQuestion").classList.remove("hidden");
+   document.getElementById("saveQuestion").classList.add("hidden");
 
+
+
+        
     console.log("HEYYYYYY IT HERE." + questionId + ".");
     const {data: data2, error: error2} = await supabase.from('Options').select('*').eq('Question_id',questionId);
 
@@ -175,8 +152,6 @@ async function editQuestion(questionId,questionName){
         
     });
 
-
-
 }
 
 /************************************************************************************************************************************
@@ -186,7 +161,86 @@ async function editQuestion(questionId,questionName){
  * 
  * 
  ****************************************************************************************************************************************/
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
 
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
+
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
+async function updateQuestion(question,op1,op2,op3,op4,cor1,cor2,cor3,cor4){
+
+    if(question!=document.getElementById("QuestionTime").textContent){
+
+    }
+
+    if(op1!=document.getElementById("op1").textContent){
+
+    }
+    if(op2!=document.getElementById("op2").textContent){
+        
+    }
+    if(op3!=document.getElementById("op3").textContent){
+        
+    }
+    if(op4!=document.getElementById("op4").textContent){
+        
+    }
+
+
+
+
+
+}
+
+
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
+
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
+async function deleteQuestion(){
+
+
+
+
+
+}
+
+
+/************************************************************************************************************************************
+ * 
+ * 
+ * 
+ * 
+ * 
+ ****************************************************************************************************************************************/
 
 
 /************************************************************************************************************************************
@@ -228,8 +282,16 @@ async function saveNewQuestion(){
 
 
 
-  
-     console.log("huh man");
+  //secret element time????
+        const btnNew = document.createElement('button');
+        btnNew.id = theID;
+        btnNew.textContent = quest;
+        const divTime = document.getElementById("questionsList");
+        btnNew.classList.add("btn");
+        btnNew.classList.add("secondary");
+        btnNew.classList.add("large");
+        divTime.appendChild(btnNew);
+        document.getElementById(theID).addEventListener("click", () => editQuestion(theID,quest));
         showQuestionBank(quizId);
 
 }
@@ -258,7 +320,7 @@ async function  saveNewQuizInfo(){
         const {data, error} = await supabase.from('Quizzes').select('id').eq('Quiz_Name',title).single();
 
 
-
+//question bank diiff label than name of quiz. make them separatw so I can accerss it when needed. it will only change if different quiz is selected or made hehe.
 
             if (error) {
         console.error('Insert failed:', error);

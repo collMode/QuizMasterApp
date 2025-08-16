@@ -509,3 +509,29 @@ function showJoinQuizModal() {
     // In a real app, you would show a modal to enter a join code
     alert('Join quiz functionality would be implemented here');
 }*/
+
+    const {data, error} = await supabase.from('Questions').select('*').eq('QuizID',id);
+    if(error){
+        console.error("bro it an error");
+    }else{
+        let i = 0;
+
+        data.forEach(question => {
+            i++;
+            const btnNew = document.createElement('button');
+            btnNew.id = 'question' + i;
+            btnNew.textContent = question.Question;
+            const divTime = document.getElementById("questionsList");
+            btnNew.classList.add("btn");
+            btnNew.classList.add("secondary");
+            btnNew.classList.add("large");
+            divTime.appendChild(btnNew);
+            document.getElementById("question" + i).addEventListener("click", () => editQuestion(question.id,question.Question));
+        });
+
+    }
+    const myDiv = document.getElementById("questionsList");
+
+    const buttons = myDiv.querySelectorAll('button');
+
+        buttons.forEach(btn => btn.remove());
