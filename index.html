@@ -29,6 +29,7 @@
             </div>
         </div> 
 
+        
         <!-- Dashboard Screen (hidden initially) -->
         <div id="dashboard-screen" class="screen hidden">
             <header>
@@ -92,18 +93,18 @@ Screen to create the basic quiz info like title, description, privacy level. in 
 
 question bank screen for new quiz
 
---------------------------------------------------------------------------------------------->
+-------------------------------------------------------------------------------------------->
 
-<div style="background-color: aqua;accent-color: red;color-scheme: green;" id="questions-screen" class="screen hidden">
+<div quizId = "place" style="background-color: aqua;accent-color: red;color-scheme: green;" id="questions-screen" class="screen hidden">
 <div style="display: flex; justify-content: space-between ; background-color: lightsteelblue;">
-<div>
+<!------<div>
  <button id="back2" style="position:relative; top: 5px;" class="btn small primary">back</button>
-    </div>
+    </div>----->
 <div>
  <h1 style="text-align: center; margin: 0; padding: 0;position: relative; left: 100px;" id="quiz-title-placeholder">Question Bank</h1>
  </div>
  <div>
- <button id="save2" style="position:relative; top: 5px;" class="btn small primary">Save Changes</button>
+ <button id="backToQuizzes" style="position:relative; top: 5px;" class="btn small primary">Return to Quizzes</button>
  <button id="addTime" style="position:relative; top: 5px;" class="btn small primary">add Question</button>
  </div>
 
@@ -122,39 +123,37 @@ question bank screen for new quiz
 
 
 
-<!------------------------------------------------------------------------------------------
 
+
+<!------------------------------------------------------------------------------------------
 
 add question page
 --------------------------------------------------------------------------------------------->
-<div id="addQuestion" class="screen hidden">
+<div questionId = "placeholder" info="" id="addQuestion" class="screen hidden">
 
     <div>
          <label>Question:</label>
-        <textarea id="QuestionTime" rows:20 cols:20></textarea>
+        <textarea id="QuestionTime" id="addQuestion" questionId = "placeholder" rows:20 cols:20 ></textarea>
     </div>
     <div id="questionControl">
         <label>Option 1:</label>
-        <input id="op1" type="text">
-        <input id="cor1" type="checkbox"><br>
+        <input id="op1" opId="" info="" checked="false" type="text">
+        <input id="cor1"  type="checkbox"><br>
         <label>Option 2:</label>
-        <input id="op2" type="text">
+        <input id="op2" opId="" info="" checked="false" type="text">
         <input id="cor2" type="checkbox"><br>
         <label>Option 3:</label>
-        <input id="op3" type="text">
+        <input id="op3" opId="" info="" checked="false" type="text">
         <input id="cor3" type="checkbox"><br>
         <label>Option 4:</label>
-        <input id="op4" type="text">
+        <input id="op4" opId="" info="" checked="false" type="text">
         <input id="cor4" type="checkbox"><br>
         <button class = "primary btn small" id="saveQuestion">Save Question</button>
         <button class = "primary btn small" id="updateQuestion">update Question</button>
         <button class = "primary btn small hidden" id="deleteQuestion">Delete Question</button>
 
     </div>
-
-
 </div>
-
 <!------------------------------------------------------------------------------------------
 
 
